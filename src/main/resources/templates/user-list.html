@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Table</title>
+    <style>
+        table {
+            width: 40%;
+            background: white;
+            color: rgba(20, 10, 70, 2);
+            border-spacing: 1px;
+        }
+        td, th {
+            background: rgba(20, 200, 10, 0.45);
+            padding: 5px;
+        }
+        h1 {
+            color: rgba(8, 20, 59, 1);
+        }
+    </style>
+</head>
+<body>
+<br>
+<h1>Table with users</h1>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Update user</th>
+        <th>Delete user</th>
+
+    </tr>
+    <tbody>
+    <tr th:each="users : ${users}">
+
+        <td th:utext="${user.getId()}"></td>
+        <td th:utext="${user.firstName()}"></td>
+        <td th:utext="${user.lastName()}"></td>
+        <td>
+            <form  th:action="@{/edit/{id}(id=${user.getId()})}" th:object="${user}">
+                <button type="submit">Update</button>
+            </form>
+        </td>
+        <td>
+            <form  th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<button><a href="user-create">Create user!</a></button>
+<br>
+</body>
+</html>

@@ -10,41 +10,27 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String email;
-    private String name;
+
+    @Column
+    private String firstName;
+
+    @Column
     private String lastName;
-
-    public User() {
-    }
-
-    public User(String email, String name, String lastName) {
-        this.email = email;
-        this.name = name;
-        this.lastName = lastName;
-    }
 
     public Long getId() {
         return id;
     }
 
-    public void seStId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -55,26 +41,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+    public User(Long id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id && Objects.equals(email, user.email) && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email, name, lastName);
+    public User() {
     }
 }
