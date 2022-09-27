@@ -33,13 +33,13 @@
 
     </tr>
     <tbody>
-    <tr th:each="users : ${users}">
+    <tr th:each="user : ${user}">
 
         <td th:utext="${user.getId()}"></td>
-        <td th:utext="${user.firstName()}"></td>
-        <td th:utext="${user.lastName()}"></td>
+        <td th:utext="${user.getFirstName()}"></td>
+        <td th:utext="${user.getLastName()}"></td>
         <td>
-            <form  th:action="@{/edit/{id}(id=${user.getId()})}" th:object="${user}">
+            <form  th:action="@{/user-update/{id}(id=${user.getId()})}" th:object="${user}">
                 <button type="submit">Update</button>
             </form>
         </td>

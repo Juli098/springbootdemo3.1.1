@@ -2,7 +2,6 @@ package com.example.springbootdemo.controller;
 
 import com.example.springbootdemo.model.User;
 import com.example.springbootdemo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +21,8 @@ public class UserController {
 
     @GetMapping("/user-list")
     public String getAll(Model model) {
-        List<User> users = userService.findAll();
-        model.addAttribute("users", users);
+        List<User> user = userService.findAll();
+        model.addAttribute("user", user);
         return "user-list";
     }
     @GetMapping("/user-create")
@@ -37,7 +36,7 @@ public class UserController {
         userService.saveUser(user);
         return "redirect:/user-list";
     }
-    @GetMapping("user-delete{id}")
+    @GetMapping("{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteById(id);
         return "redirect:/user-list";
@@ -49,7 +48,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "user-update";
     }
-    @PostMapping("/user-update")
+    @PostMapping("/user-update/{id}")
     public String updateUser(User user){
         userService.saveUser(user);
         return "redirect:/user-list";

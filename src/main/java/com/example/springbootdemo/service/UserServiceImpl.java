@@ -34,20 +34,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
     public void deleteById(Long id) {
-
-    }
-
-    @Override
-    @Transactional
-    public void delete(Long id) {
         userRepository.deleteById(id);
     }
 
-}
+    }
+
+
+
 
 
